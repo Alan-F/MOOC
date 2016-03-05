@@ -6,9 +6,19 @@ mod = graphlab.linear_regression.create(dataset,features=input_feature,target=ou
 coef = mod.get('coefficients')['value']
 intercept = coef[0]
 slope = coef[1]
+example_predictions = example_model.predict(test_data)
+print model3.evaluate(test_data)
+model_2_features = model_1_features + ['bed_bath_rooms']
 
 #.SArray()
 test_feature = graphlab.SArray(range(5))
 # %.2f
 print "The estimated price for a house with %d squarefeet is $%.2f" % (my_house_sqft, estimated_price)
 
+#
+from math import log
+from math import e
+
+#
+train_data['bedrooms_squared'] = train_data['bedrooms'].apply(lambda x: x**2)
+train_data['log_sqft_living'] =train_data['sqft_living'].apply(lambda x: log(x,e))
