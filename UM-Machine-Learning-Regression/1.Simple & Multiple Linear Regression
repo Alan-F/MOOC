@@ -1,1 +1,14 @@
+import graphlab
+sales = graphlab.SFrame('kc_house_data.gl/')
+train_data,test_data = sales.random_split(.8,seed=0)
+
+mod = graphlab.linear_regression.create(dataset,features=input_feature,target=output,validation_set=None) #features=list() #target=str()
+coef = mod.get('coefficients')['value']
+intercept = coef[0]
+slope = coef[1]
+
+#.SArray()
+test_feature = graphlab.SArray(range(5))
+# %.2f
+print "The estimated price for a house with %d squarefeet is $%.2f" % (my_house_sqft, estimated_price)
 
