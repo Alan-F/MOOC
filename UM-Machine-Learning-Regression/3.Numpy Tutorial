@@ -1,0 +1,46 @@
+#Numpy Tutorial
+#Numpy is a computational library for Python that is optimized for operations on multi-dimensional arrays. In this notebook we will use numpy to work with 1-d arrays (often called vectors) and 2-d arrays (often called matrices). For a the full user guide and reference for numpy see: http://docs.scipy.org/doc/numpy/
+
+import numpy as np 
+
+#1
+mylist = [1., 2., 3., 4.]
+mynparray = np.array(mylist)
+mynparray
+print type(mynparray)
+
+#2 initialize an array (of any dimension) of all ones or all zeroes with the ones() and zeros() functions
+one_vector = np.ones(4)
+print one_vector # using print removes the array() portion
+one2Darray = np.ones((2, 4)) # an 2D array with 2 "rows" and 4 "columns"
+print one2Darray, type(one2Darray)
+zero_vector = np.zeros(4)
+print zero_vector
+empty_vector = np.empty(7)
+print empty_vector
+
+#3  2D arrays are accessed similarly by referring to the row and column index separated by a comma:
+my_matrix = np.array([[1, 2, 3], [4, 5, 6]])
+print my_matrix
+print my_matrix[1, 2]
+print my_matrix[0:2, 2] # recall 0:2 = [0, 1]
+
+#4
+fib_indices = np.array([1, 1, 2, 3])
+random_vector = np.random.random([10,2]) # 10 random numbers between 0 and 1
+print random_vector
+print random_vector[fib_indices]
+my_vector = np.array([1, 2, 3, 4])
+select_index = np.array([True, False, True, False])
+print my_vector[select_index]
+select_cols = np.array([True, False, True]) # 1st and 3rd column
+select_rows = np.array([False, True]) # 2nd row
+print my_matrix[select_rows, :] # just 2nd row but all columns
+
+#5
+print my_array / np.array([2., 3., 4., 5.]) # = [1.0/2.0, 2.0/3.0, 3.0/4.0, 4.0/5.0]
+print np.sum(my_array)
+print np.average(my_array)
+array1_mag = np.sqrt(np.dot(array1, array1))
+my_predictions = np.dot(my_features, my_weights) # note that the weights are on the right
+print np.dot(matrix_1, matrix_2)
