@@ -1,1 +1,61 @@
+#Fire up graphlab create
+import graphlab
+sales = graphlab.SFrame('home_data.gl/')
 
+graphlab.canvas.set_target('ipynb')
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+sales.show(view="Scatter Plot", x="sqft_living", y="price")
+
+train_data,test_data = sales.random_split(.8,seed=0)
+
+sqft_model = graphlab.linear_regression.create(train_data, target='price', features=['sqft_living'],validation_set=None)
+print sqft_model.evaluate(test_data)
+sqft_model.get('coefficients')
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+plt.plot(test_data['sqft_living'],test_data['price'],'.',test_data['sqft_living'],sqft_model.predict(test_data),'+')
+
+sales.show(view='BoxWhisker Plot', x='zipcode', y='price')
+print my_features_model.predict(house2)
+sales.num_rows()
+
+
+products['word_count'] = graphlab.text_analytics.count_words(products['review'])
+sentiment_model = graphlab.logistic_classifier.create(train_data,target='sentiment',features=['word_count'],validation_set=test_data)
+sentiment_model.show(view='Evaluation')
+selected_words_model.predict(diaper_champ_reviews[0:1], output_type='probability')
+
+
+obama['word_count'] = graphlab.text_analytics.count_words(obama['text'])
+
+obama_word_count_table = obama[['word_count']].stack('word_count', new_column_name = ['word','count'])
+
+obama_word_count_table.sort('count',ascending=False)
+
+tfidf = graphlab.text_analytics.tf_idf(people['word_count'])
+obama[['tfidf']].stack('tfidf',new_column_name=['word','tfidf']).sort('tfidf',ascending=False)
+graphlab.distances.cosine(obama['tfidf'][0],clinton['tfidf'][0])
+
+knn_model = graphlab.nearest_neighbors.create(people,features=['tfidf'],label='name')
+knn_model.query(people[people['name']=='Barack Obama'])
+
+len(s1['user_id'].unique())
+
+artists=song_data.groupby(key_columns='artist', operations={'total_count': graphlab.aggregate.SUM('listen_count')})
+artists.sort('total_count',ascending=False).print_rows(30)
+popularity_model = graphlab.popularity_recommender.create(train_data,user_id='user_id',item_id='song')
+popularity_model.recommend(users=[users[0]])
+personalized_model = graphlab.item_similarity_recommender.create(train_data,user_id='user_id',item_id='song')
+personalized_model.get_similar_items(['With Or Without You - U2'])
+
+def get_images_from_ids(query_result):
+  return image_train.filter_by(query_result['reference_label'],'id')
+  
+show_neighbors = lambda i: get_images_from_ids(knn_model.query(image_train[i:i+1]))['image'].show()
+#image_train.sketch_summary()
+image_train.filter_by('cat','label')
+
+b.append(image_train[image_train['id']==i]['label'])
